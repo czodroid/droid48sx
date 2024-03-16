@@ -31,13 +31,13 @@ def buildDateTxt
 
 android {
     namespace 'org.czo.droid48sx'
-    compileSdk 33
+    compileSdk 34
     //ndkVersion '25.1.8937393'
     defaultConfig {
 
         applicationId "org.czo.droid48sx"
         minSdkVersion 19
-        targetSdkVersion 33
+        targetSdkVersion 34
         versionCode minutesSinceEpoch
 
         setProperty("versionName", "${gitVersionName}".replaceAll(/-.*/,''))
