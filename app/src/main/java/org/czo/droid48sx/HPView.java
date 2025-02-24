@@ -34,26 +34,26 @@ public class HPView extends SurfaceView implements SurfaceHolder.Callback, Runna
 
     private static final int MAX_TOUCHES = 49;
     private Thread drawThread;
-    private X48 x48;
-    private Bitmap mainScreen;
-    private SurfaceHolder mSurfaceHolder;
+    private final X48 x48;
+    private final Bitmap mainScreen;
+    private final SurfaceHolder mSurfaceHolder;
     private boolean surfaceValid;
-    private Bitmap annImages[];
-    boolean ann[];
-    int ann_pos[] = {62, 105, 152, 197, 244, 287};
-    private List<Integer> queuedCodes;
-    private int touches[] = new int[MAX_TOUCHES];
+    private final Bitmap[] annImages;
+    boolean[] ann;
+    int[] ann_pos = {62, 105, 152, 197, 244, 287};
+    private final List<Integer> queuedCodes;
+    private final int[] touches = new int[MAX_TOUCHES];
     protected boolean needFlip;
-    private short buf[];
-    private short audiobuf[];
+    private final short[] buf;
+    private final short[] audiobuf;
     private int currentOrientation;
-    private boolean multiTouch;
-    private AudioTrack track;
+    private final boolean multiTouch;
+    private final AudioTrack track;
     private TimerTask audioTask;
     private Timer audioTimer;
 
-    int buttons_coords[][] = new int[MAX_TOUCHES][4];
-    int icons_coords[][] = new int[6][2];
+    int[][] buttons_coords = new int[MAX_TOUCHES][4];
+    int[][] icons_coords = new int[6][2];
 
     Matrix matrixScreen;
     Matrix matrixBack;
@@ -132,7 +132,7 @@ public class HPView extends SurfaceView implements SurfaceHolder.Callback, Runna
     }
 
     // private short data [];
-    private Bitmap keys[] = new Bitmap[MAX_TOUCHES];
+    private final Bitmap[] keys = new Bitmap[MAX_TOUCHES];
     protected volatile Bitmap backBuffer;
     private boolean fullWidth;
 
@@ -154,7 +154,7 @@ public class HPView extends SurfaceView implements SurfaceHolder.Callback, Runna
         this.scaleControls = scaleControls;
     }
 
-    public void refreshMainScreen(short data[]) {
+    public void refreshMainScreen(short[] data) {
         Canvas c = null;
         try {
             c = mSurfaceHolder.lockCanvas(null);
@@ -243,7 +243,7 @@ public class HPView extends SurfaceView implements SurfaceHolder.Callback, Runna
                         Paint keyPaint = new Paint();
                         keyPaint.setFilterBitmap(true);
 
-                        Matrix keyMatrix[] = new Matrix[MAX_TOUCHES];
+                        Matrix[] keyMatrix = new Matrix[MAX_TOUCHES];
 
                         ArrayList<Integer> orderKeys = new ArrayList<Integer>();
                         for (int k = 0; k < keys.length; k++) {
@@ -750,7 +750,7 @@ public class HPView extends SurfaceView implements SurfaceHolder.Callback, Runna
         }
     }
 
-    public void refreshIcons(boolean ann[]) {
+    public void refreshIcons(boolean[] ann) {
         this.ann = ann;
     }
 
@@ -814,265 +814,136 @@ public class HPView extends SurfaceView implements SurfaceHolder.Callback, Runna
             if (bString.equals("0"))
                 return false;
             else if (bString.equals("1")) {
-                if (d)
-                    key(28, true);
-                else
-                    key(28, false);
+                key(28, d);
                 return true;
             } else if (bString.equals("2")) {
-                if (d)
-                    key(44, true);
-                else
-                    key(44, false);
+                key(44, d);
                 return true;
             }
         }
 
         case KeyEvent.KEYCODE_0:
-            if (d)
-                key(45, true);
-            else
-                key(45, false);
+            key(45, d);
             return true;
         case KeyEvent.KEYCODE_1:
-            if (d)
-                key(40, true);
-            else
-                key(40, false);
+            key(40, d);
             return true;
         case KeyEvent.KEYCODE_2:
-            if (d)
-                key(41, true);
-            else
-                key(41, false);
+            key(41, d);
             return true;
         case KeyEvent.KEYCODE_3:
-            if (d)
-                key(42, true);
-            else
-                key(42, false);
+            key(42, d);
             return true;
         case KeyEvent.KEYCODE_4:
-            if (d)
-                key(35, true);
-            else
-                key(35, false);
+            key(35, d);
             return true;
         case KeyEvent.KEYCODE_5:
-            if (d)
-                key(36, true);
-            else
-                key(36, false);
+            key(36, d);
             return true;
         case KeyEvent.KEYCODE_6:
-            if (d)
-                key(37, true);
-            else
-                key(37, false);
+            key(37, d);
             return true;
         case KeyEvent.KEYCODE_7:
-            if (d)
-                key(30, true);
-            else
-                key(30, false);
+            key(30, d);
             return true;
         case KeyEvent.KEYCODE_8:
-            if (d)
-                key(31, true);
-            else
-                key(31, false);
+            key(31, d);
             return true;
         case KeyEvent.KEYCODE_9:
-            if (d)
-                key(32, true);
-            else
-                key(32, false);
+            key(32, d);
             return true;
         case KeyEvent.KEYCODE_ENTER:
-            if (d)
-                key(24, true);
-            else
-                key(24, false);
+            key(24, d);
             return true;
         case KeyEvent.KEYCODE_DEL:
-            if (d)
-                key(28, true);
-            else
-                key(28, false);
+            key(28, d);
             return true;
         case KeyEvent.KEYCODE_PERIOD:
-            if (d)
-                key(46, true);
-            else
-                key(46, false);
+            key(46, d);
             return true;
         case KeyEvent.KEYCODE_AT:
-            if (d)
-                key(29, true);
-            else
-                key(29, false);
+            key(29, d);
             return true;
         case KeyEvent.KEYCODE_A:
-            if (d)
-                key(0, true);
-            else
-                key(0, false);
+            key(0, d);
             return true;
         case KeyEvent.KEYCODE_B:
-            if (d)
-                key(1, true);
-            else
-                key(1, false);
+            key(1, d);
             return true;
         case KeyEvent.KEYCODE_C:
-            if (d)
-                key(2, true);
-            else
-                key(2, false);
+            key(2, d);
             return true;
         case KeyEvent.KEYCODE_D:
-            if (d)
-                key(3, true);
-            else
-                key(3, false);
+            key(3, d);
             return true;
         case KeyEvent.KEYCODE_E:
-            if (d)
-                key(4, true);
-            else
-                key(4, false);
+            key(4, d);
             return true;
         case KeyEvent.KEYCODE_F:
-            if (d)
-                key(5, true);
-            else
-                key(5, false);
+            key(5, d);
             return true;
         case KeyEvent.KEYCODE_G:
-            if (d)
-                key(6, true);
-            else
-                key(6, false);
+            key(6, d);
             return true;
         case KeyEvent.KEYCODE_H:
-            if (d)
-                key(7, true);
-            else
-                key(7, false);
+            key(7, d);
             return true;
         case KeyEvent.KEYCODE_I:
-            if (d)
-                key(8, true);
-            else
-                key(8, false);
+            key(8, d);
             return true;
         case KeyEvent.KEYCODE_J:
-            if (d)
-                key(9, true);
-            else
-                key(9, false);
+            key(9, d);
             return true;
         case KeyEvent.KEYCODE_K:
-            if (d)
-                key(10, true);
-            else
-                key(10, false);
+            key(10, d);
             return true;
         case KeyEvent.KEYCODE_L:
-            if (d)
-                key(11, true);
-            else
-                key(11, false);
+            key(11, d);
             return true;
         case KeyEvent.KEYCODE_M:
-            if (d)
-                key(12, true);
-            else
-                key(12, false);
+            key(12, d);
             return true;
         case KeyEvent.KEYCODE_N:
-            if (d)
-                key(13, true);
-            else
-                key(13, false);
+            key(13, d);
             return true;
         case KeyEvent.KEYCODE_O:
-            if (d)
-                key(14, true);
-            else
-                key(14, false);
+            key(14, d);
             return true;
         case KeyEvent.KEYCODE_P:
-            if (d)
-                key(15, true);
-            else
-                key(15, false);
+            key(15, d);
             return true;
         case KeyEvent.KEYCODE_Q:
-            if (d)
-                key(16, true);
-            else
-                key(16, false);
+            key(16, d);
             return true;
         case KeyEvent.KEYCODE_R:
-            if (d)
-                key(17, true);
-            else
-                key(17, false);
+            key(17, d);
             return true;
         case KeyEvent.KEYCODE_S:
-            if (d)
-                key(18, true);
-            else
-                key(18, false);
+            key(18, d);
             return true;
         case KeyEvent.KEYCODE_T:
-            if (d)
-                key(19, true);
-            else
-                key(19, false);
+            key(19, d);
             return true;
         case KeyEvent.KEYCODE_U:
-            if (d)
-                key(20, true);
-            else
-                key(20, false);
+            key(20, d);
             return true;
         case KeyEvent.KEYCODE_V:
-            if (d)
-                key(21, true);
-            else
-                key(21, false);
+            key(21, d);
             return true;
         case KeyEvent.KEYCODE_W:
-            if (d)
-                key(22, true);
-            else
-                key(22, false);
+            key(22, d);
             return true;
         case KeyEvent.KEYCODE_X:
-            if (d)
-                key(23, true);
-            else
-                key(23, false);
+            key(23, d);
             return true;
         case KeyEvent.KEYCODE_Y:
-            if (d)
-                key(25, true);
-            else
-                key(25, false);
+            key(25, d);
             return true;
         case KeyEvent.KEYCODE_Z:
-            if (d)
-                key(26, true);
-            else
-                key(26, false);
+            key(26, d);
             return true;
         case KeyEvent.KEYCODE_SPACE:
-            if (d)
-                key(47, true);
-            else
-                key(47, false);
+            key(47, d);
             return true;
 
             // case KeyEvent.KEYCODE_SHIFT_LEFT: if (d) key(34, true); else key(34, false);
@@ -1081,34 +952,19 @@ public class HPView extends SurfaceView implements SurfaceHolder.Callback, Runna
             // return true;
 
         case KeyEvent.KEYCODE_DPAD_UP:
-            if (d)
-                key(10, true);
-            else
-                key(10, false);
+            key(10, d);
             return true;
         case KeyEvent.KEYCODE_DPAD_DOWN:
-            if (d)
-                key(16, true);
-            else
-                key(16, false);
+            key(16, d);
             return true;
         case KeyEvent.KEYCODE_DPAD_LEFT:
-            if (d)
-                key(15, true);
-            else
-                key(15, false);
+            key(15, d);
             return true;
         case KeyEvent.KEYCODE_DPAD_RIGHT:
-            if (d)
-                key(17, true);
-            else
-                key(17, false);
+            key(17, d);
             return true;
         case KeyEvent.KEYCODE_DPAD_CENTER:
-            if (d)
-                key(24, true);
-            else
-                key(24, false);
+            key(24, d);
             return true;
 
         default:

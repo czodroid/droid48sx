@@ -116,7 +116,7 @@ public class X48 extends Activity {
 
         Dlog.d("mainView and getPrefs...");
         setContentView(R.layout.main);
-        mainView = (HPView)findViewById(R.id.hpview);
+        mainView = findViewById(R.id.hpview);
         getPrefs();
 
         readyToGo();
@@ -315,7 +315,7 @@ public class X48 extends Activity {
         }
     }
 
-    public void refreshMainScreen(short data[]) {
+    public void refreshMainScreen(short[] data) {
         mainView.refreshMainScreen(data);
     }
 
@@ -323,7 +323,7 @@ public class X48 extends Activity {
         return mainView.waitEvent();
     }
 
-    public void refreshIcons(boolean i[]) {
+    public void refreshIcons(boolean[] i) {
         mainView.refreshIcons(i);
     }
 
@@ -341,9 +341,9 @@ public class X48 extends Activity {
 
     public native void registerClass(X48 instance);
 
-    public native int fillAudioData(short data[]);
+    public native int fillAudioData(short[] data);
 
-    public native int fillScreenData(short data[], boolean ann[]);
+    public native int fillScreenData(short[] data, boolean[] ann);
 
     public native void flipScreen();
 
@@ -1105,11 +1105,11 @@ public class X48 extends Activity {
                     change = true;
                 }
             } else {
-                if (port.exists() && (port.length() == 1024 * size)) {
+                if (port.exists() && (port.length() == 1024L * size)) {
 
                 } else {
                     Dlog.d("===================== Port" + number + " file does not exists or is incomplete. Writing a blank file.");
-                    byte data[] = new byte[1024];
+                    byte[] data = new byte[1024];
                     for (int i = 0; i < data.length; i++)
                         data[i] = 0;
                     try {

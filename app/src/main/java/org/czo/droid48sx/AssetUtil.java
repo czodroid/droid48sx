@@ -23,7 +23,7 @@ public class AssetUtil {
 
     public static void copyAsset(AssetManager am, boolean sd, boolean force) {
         try {
-            String assets[] = am.list("");
+            String[] assets = am.list("");
             for (int i = 0; i < assets.length; i++) {
                 boolean hp48 = assets[i].equals("hp48");
                 boolean ram = assets[i].equals("ram");
@@ -46,7 +46,7 @@ public class AssetUtil {
                         Dlog.d("Overwriting " + assets[i]);
                         FileOutputStream out = new FileOutputStream(fout);
                         InputStream in = am.open(assets[i]);
-                        byte buffer[] = new byte[8192];
+                        byte[] buffer = new byte[8192];
                         int n = -1;
                         while ((n = in.read(buffer)) > -1) {
                             out.write(buffer, 0, n);
