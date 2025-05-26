@@ -2,14 +2,14 @@
 // Author: Olivier Sirol <czo@free.fr>
 // License: GPL-2.0 (http://www.gnu.org/copyleft)
 // File Created: avril 2012
-// Last Modified: Saturday 11 November 2023, 17:04
-// Edit Time: 2:05:39
+// Last Modified: Monday 26 May 2025, 21:51
+// Edit Time: 2:07:20
 // Description: 48sx's build.gradle
 
 apply plugin: 'com.android.application'
 
 println("")
-def keystorePropertiesFile = rootProject.file("local.properties")
+def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
 def canSign = false
 if (keystorePropertiesFile.exists()) {
@@ -29,13 +29,14 @@ def buildDateTxt
 
 android {
     namespace 'org.czo.droid48sx'
-    compileSdk 34
+    compileSdk 35
     //ndkVersion '25.1.8937393'
+    ndkVersion '28.1.13356709'
     defaultConfig {
 
         applicationId "org.czo.droid48sx"
         minSdkVersion 21
-        targetSdkVersion 34
+        targetSdkVersion 35
         versionCode minutesSinceEpoch
 
         println("-> gitVersionName:   " + gitVersionName)
@@ -50,10 +51,10 @@ android {
     if (canSign) {
         signingConfigs {
             release {
-                storeFile file(keystoreProperties['key.store'])
-                storePassword keystoreProperties['key.store.password']
-                keyAlias keystoreProperties['key.alias']
-                keyPassword keystoreProperties['key.alias.password']
+                storeFile file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
                 v1SigningEnabled true
                 v2SigningEnabled true
             }
@@ -98,7 +99,7 @@ android {
 
     externalNativeBuild {
         cmake {
-            version "3.22.1"
+            version "3.31.6"
             path "src/main/cpp/CMakeLists.txt"
         }
     }
