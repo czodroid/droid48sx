@@ -1,6 +1,6 @@
 ## 48sx CHANGELOG
 
-* 1 Jun 2025 (Version 15.1.29146646)
+* 1 Jun 2025 (Version 15.2.29146660)
   - Bug fixes for android 15 to optout EdgeToEdge
   - Intended to work from Android 5 to 15 on armeabi-v7a, arm64-v8a, x86 and x86_64
     architectures
