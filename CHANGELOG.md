@@ -1,5 +1,14 @@
 ## 48sx CHANGELOG
 
+* 1 Jun 2025 (Version 15.1.29146646)
+  - Bug fixes for android 15 to optout EdgeToEdge
+  - Intended to work from Android 5 to 15 on armeabi-v7a, arm64-v8a, x86 and x86_64
+    architectures
+  - In recent versions of Android, you must grant the 'Photos and Videos' permission
+    for 'Load object on stack' and 'Save/Restore checkpoint ZIP' to function properly.
+    The file must be located in the Download folder and have a '.png' extension.
+    I hope it will be OK for Google Play!
+
 * 28 May 2025 (Version 15.1.29140903)
   - Bug fixes and performance improvements
   - Intended to work from Android 5 to 15 on armeabi-v7a, arm64-v8a, x86 and x86_64
