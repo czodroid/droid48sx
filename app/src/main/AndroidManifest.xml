@@ -13,11 +13,11 @@ android:requestLegacyExternalStorage="true"
         android:largeHeap="true"
         android:requestLegacyExternalStorage="true"
         tools:ignore="GoogleAppIndexingWarning"
-        android:theme="@android:style/Theme.DeviceDefault.Light.DarkActionBar">
+        android:theme="@style/AppTheme">
 
         <activity
-            android:exported="true"
             android:name=".X48"
+            android:exported="true"
             android:anyDensity="true"
             android:configChanges="keyboardHidden"
             android:launchMode="singleTop"
@@ -34,13 +34,13 @@ android:requestLegacyExternalStorage="true"
         </activity>
 
         <activity
-            android:exported="true"
             android:name=".ProgListView"
+            android:exported="true"
             android:label="@string/load_prog" />
 
         <activity
-            android:exported="true"
             android:name=".Settings"
+            android:exported="true"
             android:label="@string/general_preferences" />
 
     </application>
